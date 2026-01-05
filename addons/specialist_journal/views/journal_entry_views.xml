@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+        <record id="view_specialist_journal_entry_list" model="ir.ui.view">
+            <field name="name">specialist.journal.entry.list</field>
+            <field name="model">specialist.journal.entry</field>
+            <field name="arch" type="xml">
+                <list string="Journal Entries">
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="user_id"/>
+                    <field name="entry_type"/>
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_specialist_journal_entry_form" model="ir.ui.view">
+            <field name="name">specialist.journal.entry.form</field>
+            <field name="model">specialist.journal.entry</field>
+            <field name="arch" type="xml">
+                <form string="Journal Entry">
+                    <header>
+                        <button
+                            name="action_apply_templates"
+                            type="object"
+                            string="Apply Templates"
+                            class="btn-primary"
+                        />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="user_id" readonly="1"/>
+                                <field name="date"/>
+                                <field name="entry_type"/>
+                                <field name="name"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <field name="template_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        </group>
+                        
+                        <group>
+                            <field name="content" placeholder="Write your notes here..."/>
+                        </group>
+
+                        <group string="Technical" col="4">
+                            <field name="create_date" readonly="1"/>
+                            <field name="write_date" readonly="1"/>
+                            <field name="create_uid" readonly="1"/>
+                            <field name="write_uid" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_specialist_journal_entries" model="ir.actions.act_window">
+            <field name="name">Journal Entries</field>
+            <field name="res_model">specialist.journal.entry</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_specialist_journal_root"
+                  name="Specialist Journal"
+                  sequence="10"
+                  groups="specialist_journal.group_specialist_journal_user"/>
+
+        <menuitem id="menu_specialist_journal_entries"
+                  name="Entries"
+                  parent="menu_specialist_journal_root"
+                  action="action_specialist_journal_entries"
+                  sequence="10"
+                  groups="specialist_journal.group_specialist_journal_user"/>
+
+    </data>
+</odoo>

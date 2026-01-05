@@ -1,0 +1,49 @@
+<odoo>
+  <data>
+
+    <record id="view_res_partner_form_inherit_specialist_journal" model="ir.ui.view">
+      <field name="name">res.partner.form.inherit.specialist.journal</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//sheet//div[@name='button_box']" position="inside">
+          <button
+            string="Print Journal PDF"
+            type="action"
+            name="%(specialist_journal.action_report_specialist_journal_partner)d"
+            class="oe_stat_button"
+            icon="fa-print"
+            groups="specialist_journal.group_specialist_journal_user,specialist_journal.group_specialist_journal_admin"
+          />
+        </xpath>
+
+        <xpath expr="//notebook" position="inside">
+            <page string="Specialist Journal" groups="specialist_journal.group_specialist_journal_user">
+            <group>
+                <button
+                  string="New Entry"
+                  type="action"
+                  name="%(specialist_journal.action_specialist_journal_entries)d"
+                  class="btn-primary"
+                  context="{'default_partner_id': id, 'default_partner_name': name, 'search_default_partner_id': id}"
+                />
+            </group>
+
+            <field name="journal_entry_ids" nolabel="1" context="{'default_partner_id': id}">
+                <list string="Journal Entries">
+                <field name="date"/>
+                <field name="user_id" readonly="1"/>
+                <field name="entry_type"/>
+                <field name="name"/>
+                </list>
+            </field>
+            </page>
+
+        </xpath>
+
+      </field>
+    </record>
+
+  </data>
+</odoo>

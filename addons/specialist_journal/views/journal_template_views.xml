@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record id="view_specialist_journal_template_list" model="ir.ui.view">
+            <field name="name">specialist.journal.template.list</field>
+            <field name="model">specialist.journal.template</field>
+            <field name="arch" type="xml">
+                <list string="Journal Templates">
+                    <field name="name"/>
+                    <field name="entry_type"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_specialist_journal_template_form" model="ir.ui.view">
+            <field name="name">specialist.journal.template.form</field>
+            <field name="model">specialist.journal.template</field>
+            <field name="arch" type="xml">
+                <form string="Journal Template">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="entry_type"/>
+                        </group>
+                        <group>
+                            <field name="body" placeholder="Template text..."/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_specialist_journal_templates" model="ir.actions.act_window">
+            <field name="name">Journal Templates</field>
+            <field name="res_model">specialist.journal.template</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_specialist_journal_templates"
+                  name="Templates"
+                  parent="menu_specialist_journal_root"
+                  action="action_specialist_journal_templates"
+                  sequence="20"
+                  groups="specialist_journal.group_specialist_journal_admin"/>
+
+    </data>
+</odoo>
