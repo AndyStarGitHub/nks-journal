@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <record id="group_specialist_journal_user" model="res.groups">
+            <field name="name">Specialist Journal: User</field>
+        </record>
+
+        <record id="group_specialist_journal_admin" model="res.groups">
+            <field name="name">Specialist Journal: Admin</field>
+            <field name="implied_ids" eval="[(4, ref('group_specialist_journal_user'))]"/>
+        </record>
+    </data>
+</odoo>
